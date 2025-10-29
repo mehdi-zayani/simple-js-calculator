@@ -41,3 +41,38 @@ themeBtn.addEventListener('click', () => {
   themeBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
 });
 
+// Keyboard input support
+document.addEventListener('keydown', (e) => {
+  const key = e.key;
+
+  // Prevent page reload or default behavior on Enter
+  if (key === 'Enter') {
+    e.preventDefault();
+    try {
+      display.value = eval(display.value);
+    } catch {
+      display.value = 'Error';
+    }
+    return;
+  }
+
+  // Backspace = delete last char
+  if (key === 'Backspace') {
+    e.preventDefault();
+    display.value = display.value.slice(0, -1);
+    return;
+  }
+
+  // Escape = clear
+  if (key === 'Escape') {
+    e.preventDefault();
+    display.value = '';
+    return;
+  }
+
+  // Allow digits and basic operators
+  if (/^[0-9+\-*/.%]$/.test(key)) {
+    display.value += key;
+    return;
+  }
+});
