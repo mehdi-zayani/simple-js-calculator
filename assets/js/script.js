@@ -5,11 +5,15 @@ const buttons = document.querySelectorAll('.buttons button');
 
 // Evaluate expression and update history
 function evaluateExpression() {
-  const expression = display.value;
+  let expression = display.value;
+
   try {
+    // Convert percentage notation to numeric value (e.g. 10% => (10/100))
+    expression = expression.replace(/(\d+(\.\d+)?)%/g, '($1/100)');
+
     const result = eval(expression);
     display.value = result;
-    updateHistory(expression, result);
+    updateHistory(display.value.includes('%') ? display.value : expression, result);
   } catch {
     display.value = 'Error';
   }
