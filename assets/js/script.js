@@ -1,7 +1,37 @@
 const display = document.getElementById('display');
+const historyList = document.getElementById('history-list');
+let history = [];
 const buttons = document.querySelectorAll('.buttons button');
 
+// Evaluate expression and update history
+function evaluateExpression() {
+  const expression = display.value;
+  try {
+    const result = eval(expression);
+    display.value = result;
+    updateHistory(expression, result);
+  } catch {
+    display.value = 'Error';
+  }
+}
 
+// Update and render history
+function updateHistory(expression, result) {
+  const entry = `${expression} = ${result}`;
+  history.unshift(entry); // Add new result at the beginning
+  if (history.length > 3) history.pop(); // Keep only the last 3
+  renderHistory();
+}
+
+function renderHistory() {
+  historyList.innerHTML = '';
+  history.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item;
+    historyList.appendChild(li);
+  });
+}
+// Handle button clicks
 buttons.forEach(btn => {
   btn.addEventListener('click', () => {
     const value = btn.textContent;
@@ -20,11 +50,7 @@ buttons.forEach(btn => {
 
     // Evaluate expression
     if (value === '=') {
-      try {
-        display.value = eval(display.value);
-      } catch {
-        display.value = 'Error';
-      }
+      evaluateExpression();
       return;
     }
 
@@ -45,14 +71,10 @@ themeBtn.addEventListener('click', () => {
 document.addEventListener('keydown', (e) => {
   const key = e.key;
 
-  // Prevent page reload or default behavior on Enter
+  // Prevent default behavior on Enter
   if (key === 'Enter') {
     e.preventDefault();
-    try {
-      display.value = eval(display.value);
-    } catch {
-      display.value = 'Error';
-    }
+    evaluateExpression();
     return;
   }
 
