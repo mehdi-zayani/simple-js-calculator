@@ -11,8 +11,8 @@ Simple UI, keyboard-free usage, and instant calculations — built as a minimal 
 
 ---
 
-## 🚀 Live Demo
-👉 [View on GitHub Pages](https://mehdi-zayani.github.io/simple-js-calculator)
+## Live Demo
+ [View on GitHub Pages](https://mehdi-zayani.github.io/simple-js-calculator)
 
 ---
 
@@ -39,12 +39,12 @@ Simple UI, keyboard-free usage, and instant calculations — built as a minimal 
 
 ---
 
-## 🪪 License
+## License
 This project is open source and available under the [APACHE License](LICENSE).
 
 ---
 
-## 👤 Author
+## Author
 **Mehdi Zayani**  
 GitHub: [@mehdi-zayani](https://github.com/mehdi-zayani)
 

@@ -1,5 +1,6 @@
 const display = document.getElementById('display');
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('.buttons button');
+
 
 buttons.forEach(btn => {
   btn.addEventListener('click', () => {
@@ -31,3 +32,12 @@ buttons.forEach(btn => {
     display.value += value;
   });
 });
+
+// Theme toggle
+const themeBtn = document.getElementById('theme-btn');
+themeBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  // Change icon based on mode
+  themeBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+});
+
